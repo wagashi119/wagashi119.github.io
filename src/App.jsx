@@ -14,6 +14,7 @@ import 'reactflow/dist/style.css';
 import CustomNode from './CustomNode';
 import Sidebar from './Sidebar';
 import './index.css';
+import Border from './Border';
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -102,7 +103,6 @@ const FlowEditor = () => {
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
-      const type = event.dataTransfer.getData('application/reactflow');
       const presetDataRaw = event.dataTransfer.getData(
         'application/reactflow-preset'
       );
@@ -187,7 +187,7 @@ const FlowEditor = () => {
             alert('無効なファイル形式です');
           }
         } catch (err) {
-          alert('ファイルの解析に失敗しました');
+          alert('ファイルの解析に失敗しました:' + err);
         }
       };
       reader.readAsText(file);
@@ -212,15 +212,16 @@ const FlowEditor = () => {
 
   return (
     <div className="flex h-screen w-screen">
-      <div className="w-1/5 bg-gray-100 border-r border-gray-300">
+      <div className="w-1/5 bg-gray-100 border-gray-300">
         <Sidebar
-          presets={presets}
-          onSave={onSave}
-          onRestore={onRestore}
-          onExport={onExport}
-          onImport={onImport}
+        presets={presets}
+        onSave={onSave}
+        onExport={onExport}
+        onImport={onImport}
+        onRestore={onRestore}
         />
       </div>
+      <Border/>
 
       {/* ここで onDragOver と onDrop を div にも付与するのがコツ */}
       <div

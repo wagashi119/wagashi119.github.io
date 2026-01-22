@@ -47,28 +47,30 @@ const CustomNode = ({ data, id, selected }) => {
       )}
 
       <div style={{ fontWeight: 'bold', marginBottom: selected ? '8px' : '0' }}>
-        {data.label || 'Node'}
+      {selected && (
+          <input
+          className="nodrag"
+          type="text"
+          defaultValue={data.label}
+          onChange={onChangeName}
+          style={{height:'10%' ,width:'100%', textAlign:'center', border:'none', outline:'none', fontWeight: 'bold'}}
+        />
+        ) ||
+        data.label || 'Node'}
       </div>
 
       {/* 選択時のみ表示される最小限の設定UI */}
       {selected && (
         <div
-          style={{
-            marginTop: '8px',
-            paddingTop: '8px',
-            borderTop: '1px solid #eee',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '5px',
-          }}
+        style={{
+          marginTop: '8px',
+          paddingTop: '8px',
+          borderTop: '1px solid #eee',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '5px',
+        }}
         >
-          <input
-            className="nodrag"
-            type="text"
-            defaultValue={data.label}
-            onChange={onChangeName}
-            style={{ fontSize: '10px', width: '100%', padding: '2px' }}
-          />
           <div
             style={{
               display: 'flex',

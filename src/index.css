@@ -28,10 +28,10 @@ body,
   flex-grow: 1;
 }
 .bg-gray-100 {
-  background-color: #d8c8de;
+  background-color: rgb(255, 255, 255)
 }
 .border-r {
-  border-right: 1px solid #3525ab;
+  border-right: 1px solid #9eab25;
 }
 .p-4 {
   padding: 1rem;
